@@ -158,7 +158,7 @@ def main():
     if os.path.exists(images_dir) is False:
         os.makedirs(images_dir, exist_ok=True)
     if os.path.exists(annotations_dir) is False:
-        os.makedirs(os.path.join(annotations_dir, "annotations"), exist_ok=True)
+        os.makedirs(os.path.join(annotations_dir), exist_ok=True)
     for k in range(1, 101):
         sentence = generate_expiration_date()
         char_list = analyze_sentence(sentence, char_registry)
