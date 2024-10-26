@@ -156,6 +156,8 @@ cython_debug/
 
 # Ignore all files in directory output
 output/
+milbottle_1/
+milbottle/
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

@@ -211,7 +211,8 @@ def main():
         # with open(f"./annotations/random_result_{k}.txt", "w") as f:
         with open(
             os.path.join(
-                annotations_dir, f"random_result_{background_name.split('.')[0]}{k}.txt"
+                annotations_dir,
+                f"random_result_{background_name.split('.')[0]}_{k}.txt",
             ),
             "w",
         ) as f:
