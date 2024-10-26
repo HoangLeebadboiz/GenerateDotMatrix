@@ -195,24 +195,23 @@ def main():
         bg_img = Image.open(os.path.join(background_image_path, background_name))
         # Resize the background
         # bg_img = bg_img.resize((int(bg_img.size[0] * 2), int(bg_img.size[1] * 2)))
-        offset_y = int(bg_img.size[1] / random.uniform(2.8, 3.2))
-        offset_x = int(bg_img.size[0] / random.uniform(3, 3.2))
+        offset_y = int(bg_img.size[1] / random.uniform(4.2, 4.5))
+        offset_x = int(bg_img.size[0] / random.uniform(3.2, 3.5))
 
-        # date1 = generate_expiration_date()
-        # date1_char_list = analyze_sentence(date1, char_registry)
-        # offset_y_1 = offset_y + 70
-        # offset_x_1 = offset_x + 110
+        date1 = generate_expiration_date()
+        date1_char_list = analyze_sentence(date1, char_registry)
+        offset_y_1 = offset_y + 70
+        offset_x_1 = offset_x + 110
 
         sentence = generate_sentence()
         sentence_char_list = analyze_sentence(sentence, char_registry)
-        offset_y_2 = offset_y + 70
-        offset_x_2 = offset_x
+        offset_y_2 = offset_y_1 + 70
+        offset_x_2 = offset_x_1
 
         # with open(f"./annotations/random_result_{k}.txt", "w") as f:
         with open(
             os.path.join(
-                annotations_dir,
-                f"random_result_{background_name.split('.')[0]}_{k}.txt",
+                annotations_dir, f"random_result_{background_name.split('.')[0]}{k}.txt"
             ),
             "w",
         ) as f:
@@ -261,27 +260,27 @@ def main():
                 )
                 f.write("\n")
 
-            # for i, char, path in date1_char_list:
-            #     char_img = convert_img_to_8bit_non_background(path, ratio=scale)
+            for i, char, path in date1_char_list:
+                char_img = convert_img_to_8bit_non_background(path, ratio=scale)
 
-            #     # char_img = cut_width_of_char_image(char_img, cut_ratio=0.7)
-            #     # char_img[:, :, 3] = char_img[:, :, 3] * random.uniform(0.3, 0.5)
-            #     char_img = Image.fromarray(char_img)
-            #     char_img = char_img.filter(ImageFilter.GaussianBlur(radius=blur_radius))
-            #     position = get_position_for_character(
-            #         i, char_img.size, bg_img.size, offset_x_1, offset_y_1
-            #     )
-            #     offset_x_1 = offset_x_1 + char_img.size[0]
-            #     distance = random.randint(7, 12)
-            #     offset_x_1 = offset_x_1 + distance
+                # char_img = cut_width_of_char_image(char_img, cut_ratio=0.7)
+                # char_img[:, :, 3] = char_img[:, :, 3] * random.uniform(0.3, 0.5)
+                char_img = Image.fromarray(char_img)
+                char_img = char_img.filter(ImageFilter.GaussianBlur(radius=blur_radius))
+                position = get_position_for_character(
+                    i, char_img.size, bg_img.size, offset_x_1, offset_y_1
+                )
+                offset_x_1 = offset_x_1 + char_img.size[0]
+                distance = random.randint(7, 12)
+                offset_x_1 = offset_x_1 + distance
 
-            #     put_img_on_background(char_img, bg_img, position)
-            #     f.write(
-            #         generate_annotations(
-            #             char_registry, char, char_img, bg_img, position
-            #         )
-            #     )
-            #     f.write("\n")
+                put_img_on_background(char_img, bg_img, position)
+                f.write(
+                    generate_annotations(
+                        char_registry, char, char_img, bg_img, position
+                    )
+                )
+                f.write("\n")
 
             for i, char, path in sentence_char_list:
                 char_img = convert_img_to_8bit_non_background(path, ratio=scale)
