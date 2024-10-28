@@ -158,6 +158,11 @@ cython_debug/
 output/
 milbottle_1/
 milbottle/
+generate_from_background3/
+generate_from_background4/
+generate_from_background5/
+generate_from_background6/
+generate_from_background7/
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
